@@ -125,7 +125,8 @@
   .tag.その他{background:#EFEEEA;color:var(--ink2)}
   .tag.ok{background:var(--teal-bg);color:var(--teal2)}
   .badge-new{font-size:9.5px;font-weight:800;color:#fff;background:var(--alert);border-radius:5px;padding:1px 6px;letter-spacing:.03em}
-  .unconf{font-size:9.5px;font-weight:800;color:var(--amber);border:1px solid var(--amber);border-radius:5px;padding:1px 6px}
+  .unconf{font-size:9.5px;font-weight:800;color:var(--amber);border:1px solid var(--amber);border-radius:5px;padding:3px 9px;background:var(--surface);transition:.12s}
+  .unconf:hover{background:var(--amber);color:#fff}
   .conf{font-size:9.5px;font-weight:800;color:var(--teal2);display:inline-flex;align-items:center;gap:3px}
   .hl{color:var(--alert);font-weight:800}
   .hl.a{color:var(--amber)}
@@ -238,7 +239,7 @@
 
 <div class="topbar">
   <div class="brand"><b>ヒヤリハットくん</b><span>事務所モニター</span></div>
-  <div class="garden">しおどめ保育園三郷中央</div>
+  <div class="garden">しおどめ保育園○○</div>
   <div class="grow"></div>
   <button class="listen-btn" id="listenBtn"><span class="mic"></span>受付マイクを試聴</button>
   <div class="live"><span class="dot"></span>LIVE</div>
@@ -249,7 +250,7 @@
   <nav class="side" id="side">
     <button class="nav active" data-view="dashboard">
       <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
-      ダッシュボード</button>
+      申し送りノート</button>
     <button class="nav" data-view="board">
       <svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
       保護者メッセージボード<span class="badge" id="navBadge">0</span></button>
@@ -474,7 +475,7 @@ function hoCard(h, isNew){
       <div class="row1">
         <span class="nm">${h.name}</span><span class="cls">${h.cls}</span>
         <span class="tag ${h.cat}">${h.cat}</span>
-        ${h.conf? '<span class="conf">✓ 確認済み</span>' : '<span class="unconf">未確認</span>'}
+        ${h.conf? '<span class="conf">✓ 確認済み</span>' : `<button class="unconf" data-confirm="${h.id}">確認する</button>`}
       </div>
       ${wavePlayer(clipDur(h))}
       <div class="txt">${highlight(h.text)}</div>
@@ -488,7 +489,7 @@ function viewDashboard(){
   const present=15, absent=2, att=6, allergy=3;
   const recent = state.handoffs.slice().reverse();
   return `
-  <div class="page-h"><h1>ダッシュボード</h1><span class="sub">6月10日（火）朝の受け入れ</span></div>
+  <div class="page-h"><h1>申し送りノート</h1><span class="sub">6月10日（火）朝の受け入れ</span></div>
   <div class="updated">最終更新 8:41 ・ コドモン連携 済</div>
   <div class="stats">
     ${statDonut(present/17, "#2F9FD6", present, "/ 17名", "本日の出席",
@@ -678,6 +679,12 @@ function bindView(){
   document.querySelectorAll(".ho").forEach(c=>c.onclick=()=>openDrawer(+c.dataset.id));
   // inline waveform player (カードを開かずに再生)
   document.querySelectorAll(".wp-btn").forEach(b=>b.onclick=(e)=>{ e.stopPropagation(); toggleInline(b); });
+  // カードを開かずワンタップで確認済みにする
+  document.querySelectorAll("[data-confirm]").forEach(b=>b.onclick=(e)=>{
+    e.stopPropagation();
+    const h = state.handoffs.find(x=>x.id===+b.dataset.confirm); if(!h) return;
+    h.conf = true; toast(h.name+" を確認済みにしました"); render();
+  });
   // board filters
   document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;render();});
   const cs=$("#clsSel"); if(cs) cs.onchange=()=>{state.cls=cs.value;render();};
