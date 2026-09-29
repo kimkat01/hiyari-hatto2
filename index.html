@@ -234,8 +234,31 @@
   .demo-note{position:fixed;bottom:14px;right:16px;font-size:10.5px;color:var(--ink3);background:var(--surface);border:1px solid var(--line);
     border-radius:8px;padding:6px 11px;z-index:20}
 </style>
+<style>
+/* ★ 社会福祉法人雄雅会（園コード Y〜）から開いたときは緑テーマ（2026-09）。
+     ナレッジボードから ?garden=園キー 付きで開かれたときだけ効く。?garden が無ければ今までどおりの青 */
+html.law-y{ --teal:#43a047; }
+html.law-y .brand span{color:#cfe9d2;}
+html.law-y .garden{color:#e3f3e5;}
+html.law-y .live{color:#e8f5e9;}
+html.law-y .nav.active{background:#e8f5e9;}
+/* 音声プレーヤー（柴学園カラーの青 #0000ff）も雄雅会では緑に */
+html.law-y .wp-btn, html.law-y .pl-play, html.law-y .wp-wave i, html.law-y .player.playing .wave i{background:#2e7d32;}
+</style>
 </head>
 <body>
+<script src="https://kimkat01.github.io/staff-dashboard/gardens.js"></script>
+<script>
+// ナレッジボードから ?garden=園キー 付きで開かれたとき：雄雅会の園（園コード Y〜）は緑テーマ、上部の園名もその園にする
+var HH_GARDEN = null;
+try{ HH_GARDEN = (typeof gardenFromUrl==='function') ? gardenFromUrl() : null; }catch(e){}
+if(HH_GARDEN && /^Y/.test(HH_GARDEN.code||'')) document.documentElement.classList.add('law-y');
+document.addEventListener('DOMContentLoaded', function(){
+  if(!HH_GARDEN) return;
+  var el = document.querySelector('.topbar .garden');
+  if(el) el.textContent = HH_GARDEN.name;
+});
+</script>
 
 <div class="topbar">
   <div class="brand"><b>ヒヤリハットくん</b><span>事務所モニター</span></div>
