@@ -312,38 +312,38 @@ const state = {
   cls:"all",
   listening:false,
   handoffs:[
-    {id:1, name:"百木田夏凪", sex:"girl", cls:"うさぎ組", cat:"体調", level:"alert",
+    {id:1, name:"青木さくら", sex:"girl", cls:"うさぎ組", cat:"体調", level:"alert",
      text:"昨夜、寝る前に37.8度の熱が出て、朝は下がったけれど日中も様子を見てほしいとのこと。朝食は少なめでした。",
      time:"8:12", staff:"田中", conf:false},
-    {id:2, name:"田中俊来", sex:"boy", cls:"うさぎ組", cat:"怪我", level:"amber",
+    {id:2, name:"石井はると", sex:"boy", cls:"うさぎ組", cat:"怪我", level:"amber",
      text:"昨日、家で転んで右ひざにすり傷。絆創膏を貼っている。痛がってはいない。",
      time:"8:20", staff:"佐藤", conf:false},
-    {id:3, name:"本郷日菜", sex:"girl", cls:"ひよこ組", cat:"睡眠", level:"info",
+    {id:3, name:"森ひなた", sex:"girl", cls:"ひよこ組", cat:"睡眠", level:"info",
      text:"寝不足ぎみで、午前中ぐずるかもしれないとのこと。",
      time:"8:31", staff:"田中", conf:true},
-    {id:4, name:"小沼紗來", sex:"girl", cls:"うさぎ組", cat:"食事", level:"info",
+    {id:4, name:"小川ゆい", sex:"girl", cls:"うさぎ組", cat:"食事", level:"info",
      text:"昨夜あまり食べられず、今朝も食欲がない様子。無理せず見てほしい。",
      time:"8:35", staff:"鈴木", conf:false},
-    {id:5, name:"神谷陸", sex:"boy", cls:"ひよこ組", cat:"その他", level:"info", audio:true,
+    {id:5, name:"中村そうた", sex:"boy", cls:"ひよこ組", cat:"その他", level:"info", audio:true,
      text:"水筒を忘れたので、お茶の提供をお願いしたいとのこと。",
      time:"8:40", staff:"佐藤", conf:true},
   ],
 };
 const SIM = [
-  {name:"笹本実柊", sex:"boy", cls:"ひよこ組", cat:"怪我", level:"alert",
+  {name:"松田れん", sex:"boy", cls:"ひよこ組", cat:"怪我", level:"alert",
    text:"登園の途中で転んで頭を打ったとのこと。今は元気だが、日中も様子を見てほしい。", staff:"田中"},
-  {name:"山口心暖", sex:"girl", cls:"うさぎ組", cat:"体調", level:"amber",
+  {name:"西村こはる", sex:"girl", cls:"うさぎ組", cat:"体調", level:"amber",
    text:"咳が出ていて、鼻水も少し。悪化したら連絡してほしいとのこと。", staff:"鈴木"},
-  {name:"中野茉玲", sex:"girl", cls:"ひよこ組", cat:"体調", level:"alert",
+  {name:"藤田みお", sex:"girl", cls:"ひよこ組", cat:"体調", level:"alert",
    text:"朝、一度吐いてしまった。熱はないが、水分をこまめにとらせてほしい。", staff:"佐藤"},
 ];
 const attentionChildren = [
-  {ini:"小", name:"小沼紗來", sex:"girl", cls:"うさぎ組", tag:"卵アレルギー", lv:"alert"},
-  {ini:"神", name:"神谷陸", sex:"boy", cls:"ひよこ組", tag:"感覚過敏", lv:"info"},
-  {ini:"百", name:"百木田夏凪", sex:"girl", cls:"うさぎ組", tag:"乳・小麦", lv:"alert"},
-  {ini:"田", name:"田中俊来", sex:"boy", cls:"うさぎ組", tag:"多動傾向", lv:"info"},
-  {ini:"山", name:"山本瑶生", sex:"boy", cls:"ひよこ組", tag:"そばアレルギー", lv:"alert"},
-  {ini:"本", name:"本郷日菜", sex:"girl", cls:"ひよこ組", tag:"熱性けいれん既往", lv:"amber"},
+  {ini:"小", name:"小川ゆい", sex:"girl", cls:"うさぎ組", tag:"卵アレルギー", lv:"alert"},
+  {ini:"中", name:"中村そうた", sex:"boy", cls:"ひよこ組", tag:"感覚過敏", lv:"info"},
+  {ini:"青", name:"青木さくら", sex:"girl", cls:"うさぎ組", tag:"乳・小麦", lv:"alert"},
+  {ini:"石", name:"石井はると", sex:"boy", cls:"うさぎ組", tag:"多動傾向", lv:"info"},
+  {ini:"高", name:"高橋ゆうと", sex:"boy", cls:"ひよこ組", tag:"そばアレルギー", lv:"alert"},
+  {ini:"森", name:"森ひなた", sex:"girl", cls:"ひよこ組", tag:"熱性けいれん既往", lv:"amber"},
 ];
 const menu = [
   {mn:"主菜：オムレツ", al:[["卵","al"]]},
@@ -352,16 +352,16 @@ const menu = [
   {mn:"おやつ：ビスケット", al:[["小麦","al"],["乳","al"]]},
 ];
 const allergyChecks = [
-  {name:"小沼紗來", de:"卵除去 → オムレツを代替メニューに", need:true, cook:true, care:true},
-  {name:"百木田夏凪", de:"乳・小麦除去 → ビスケットを代替に", need:true, cook:true, care:false},
-  {name:"山本瑶生", de:"そば除去 → 本日の献立に該当なし", need:false, cook:true, care:true},
+  {name:"小川ゆい", de:"卵除去 → オムレツを代替メニューに", need:true, cook:true, care:true},
+  {name:"青木さくら", de:"乳・小麦除去 → ビスケットを代替に", need:true, cook:true, care:false},
+  {name:"高橋ゆうと", de:"そば除去 → 本日の献立に該当なし", need:false, cook:true, care:true},
 ];
 const archive = [
-  {dt:"6/10 8:12", name:"百木田夏凪", cls:"うさぎ組", pv:"昨夜37.8度の熱が出て、日中も様子を…", dur:"0:24"},
-  {dt:"6/10 8:20", name:"田中俊来", cls:"うさぎ組", pv:"転んで右ひざにすり傷、絆創膏を…", dur:"0:16"},
-  {dt:"6/9 8:05", name:"小沼紗來", cls:"うさぎ組", pv:"食欲がなく、朝ごはんをあまり…", dur:"0:19"},
-  {dt:"6/9 8:33", name:"田中俊来", cls:"うさぎ組", pv:"昨日は落ち着かず、今日も声かけを…", dur:"0:31"},
-  {dt:"6/6 8:18", name:"本郷日菜", cls:"ひよこ組", pv:"以前の熱性けいれんのため、発熱時は…", dur:"0:42"},
+  {dt:"6/10 8:12", name:"青木さくら", cls:"うさぎ組", pv:"昨夜37.8度の熱が出て、日中も様子を…", dur:"0:24"},
+  {dt:"6/10 8:20", name:"石井はると", cls:"うさぎ組", pv:"転んで右ひざにすり傷、絆創膏を…", dur:"0:16"},
+  {dt:"6/9 8:05", name:"小川ゆい", cls:"うさぎ組", pv:"食欲がなく、朝ごはんをあまり…", dur:"0:19"},
+  {dt:"6/9 8:33", name:"石井はると", cls:"うさぎ組", pv:"昨日は落ち着かず、今日も声かけを…", dur:"0:31"},
+  {dt:"6/6 8:18", name:"森ひなた", cls:"ひよこ組", pv:"以前の熱性けいれんのため、発熱時は…", dur:"0:42"},
 ];
 
 // ============ ユーティリティ ============
@@ -460,7 +460,7 @@ function toggleInline(btn){
   stopInline();
   inlineEl=wp; wp.classList.add("playing"); btn.innerHTML=PAUSE_SVG;
   const bars=[...wp.querySelectorAll(".wp-wave i")], timeEl=wp.querySelector(".wp-time");
-  // 音声指定のカード（神谷くん）は実際の録音を再生
+  // 音声指定のカード（中村そうたのカード）は実際の録音を再生
   const card=btn.closest(".ho"); const h=card ? state.handoffs.find(x=>x.id===+card.dataset.id) : null;
   if(h && h.audio){ playAudioInline(wp, bars, timeEl, h.audioSrc || KAMIYA_AUDIO); return; }
   const dur=parseInt(wp.dataset.dur)||24; let t=0;
@@ -534,9 +534,9 @@ function viewDashboard(){
     <div>
       <div class="panel" style="margin-bottom:20px">
         <div class="panel-h"><h2>今朝の要対応</h2></div>
-        <div class="alert-line"><div class="t">小沼紗來 ── アレルギー要対応</div>
+        <div class="alert-line"><div class="t">小川ゆい ── アレルギー要対応</div>
           <div class="d">本日の「オムレツ」に卵。除去食の準備を確認。</div></div>
-        <div class="alert-line"><div class="t">百木田夏凪 ── アレルギー要対応</div>
+        <div class="alert-line"><div class="t">青木さくら ── アレルギー要対応</div>
           <div class="d">「ビスケット」に小麦・乳。代替を確認。</div></div>
         <div class="prog"><span>ダブルチェック</span><div class="bar"><i style="width:66%"></i></div><span style="font-family:var(--mono)">2/3</span></div>
       </div>
