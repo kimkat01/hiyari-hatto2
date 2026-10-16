@@ -233,6 +233,119 @@
 
   .demo-note{position:fixed;bottom:14px;right:16px;font-size:10.5px;color:var(--ink3);background:var(--surface);border:1px solid var(--line);
     border-radius:8px;padding:6px 11px;z-index:20}
+  /* ===== 説明書（図解） 2026-10 ===== */
+  .guide-btn{display:flex;align-items:center;gap:7px;background:#fff;color:var(--teal);border:1px solid #fff;
+    border-radius:100px;padding:6px 14px;font-size:12.5px;font-weight:800;transition:.15s}
+  .guide-btn:hover{filter:brightness(.95)}
+  .guide-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+  .gd-scrim{position:fixed;inset:0;background:rgba(30,30,25,.45);opacity:0;pointer-events:none;transition:.2s;z-index:70}
+  .gd-scrim.open{opacity:1;pointer-events:auto}
+  .gd{position:fixed;left:50%;top:50%;transform:translate(-50%,-48%);opacity:0;pointer-events:none;transition:.22s;z-index:80;
+    width:940px;max-width:94vw;height:88vh;background:var(--surface);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+    display:flex;flex-direction:column;overflow:hidden}
+  .gd.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+  .gd-h{display:flex;align-items:center;gap:12px;padding:18px 24px 0}
+  .gd-h h2{font-size:20px;font-weight:800}
+  .gd-h .s{font-size:12.5px;color:var(--ink3)}
+  .gd-x{margin-left:auto;background:none;border:none;font-size:26px;color:var(--ink3);line-height:1;padding:2px 8px}
+  .gd-x:hover{color:var(--ink)}
+  .gd-tabs{display:flex;gap:4px;padding:14px 24px 0;border-bottom:1px solid var(--line)}
+  .gd-tab{background:none;border:none;border-bottom:3px solid transparent;padding:10px 14px;font-size:14px;font-weight:700;color:var(--ink3)}
+  .gd-tab .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--line);color:var(--ink2);
+    font-size:11px;margin-right:6px;font-family:var(--mono)}
+  .gd-tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+  .gd-tab.on .n{background:var(--teal);color:#fff}
+  .gd-body{flex:1;overflow-y:auto;padding:22px 26px 28px}
+  .gd-pane{display:none}
+  .gd-pane.on{display:block}
+  .gd-lead{font-size:14.5px;line-height:1.85;margin-bottom:20px}
+  .gd-lead b{color:var(--teal)}
+  .gd-foot{display:flex;align-items:center;gap:10px;padding:14px 24px;border-top:1px solid var(--line)}
+  .gd-foot .sp{flex:1}
+  .gd-foot .btn{flex:0 0 auto;min-width:120px}
+
+  /* 流れ図 */
+  .flow{display:flex;align-items:stretch;gap:0;margin-bottom:22px}
+  .fstep{flex:1;border:1.5px solid var(--line);border-radius:14px;padding:14px 12px 12px;text-align:center;background:var(--surface);position:relative}
+  .fstep .ic{width:46px;height:46px;border-radius:50%;margin:0 auto 9px;display:grid;place-items:center;background:var(--teal-bg)}
+  .fstep .ic svg{width:24px;height:24px;stroke:var(--teal2);fill:none;stroke-width:1.8}
+  .fstep .no{position:absolute;top:-10px;left:12px;background:var(--ink);color:#fff;font-size:11px;font-weight:800;border-radius:100px;padding:1px 8px;font-family:var(--mono)}
+  .fstep .t{font-size:13.5px;font-weight:800;margin-bottom:5px}
+  .fstep .d{font-size:11.5px;color:var(--ink2);line-height:1.6}
+  .fstep .st{display:inline-block;margin-top:9px;font-size:10.5px;font-weight:800;border-radius:6px;padding:2px 8px}
+  .st.ok{background:var(--teal-bg);color:var(--teal2)}
+  .st.proto{background:#E8EDFB;color:var(--teal)}
+  .st.todo{background:var(--amber-bg);color:var(--amber)}
+  .fstep.todo{border:2px dashed var(--amber);background:#FFFCF5}
+  .fstep.todo .ic{background:var(--amber-bg)} .fstep.todo .ic svg{stroke:var(--amber)}
+  .farrow{flex:0 0 26px;display:grid;place-items:center;color:var(--ink3)}
+  .farrow svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2}
+  .gd-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-bottom:18px}
+  .gd-legend span{display:flex;align-items:center;gap:6px}
+  .gd-box{border-radius:14px;padding:15px 18px;font-size:13.5px;line-height:1.8}
+  .gd-box.amb{background:var(--amber-bg);border:1px solid #EBD9AE}
+  .gd-box.amb b{color:var(--amber)}
+  .gd-box ul{margin:6px 0 0 1.2em}
+
+  /* 画面の見方（ミニ画面図） */
+  .mock{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin-bottom:18px;font-size:11px}
+  .mk-top{height:34px;background:var(--teal);display:flex;align-items:center;gap:8px;padding:0 12px;color:#fff;font-weight:800;position:relative}
+  .mk-top .pill{font-weight:600;font-size:10px;border:1px solid rgba(255,255,255,.35);border-radius:100px;padding:1px 8px}
+  .mk-top .g{flex:1}
+  .mk-row{display:flex;height:230px}
+  .mk-side{width:120px;background:var(--surface);border-right:1px solid var(--line);padding:8px;display:flex;flex-direction:column;gap:5px;position:relative}
+  .mk-side i{display:block;height:15px;border-radius:5px;background:var(--line2)}
+  .mk-side i.a{background:#E8EDFB}
+  .mk-main{flex:1;padding:10px;display:flex;flex-direction:column;gap:9px;position:relative}
+  .mk-stats{display:flex;gap:7px;position:relative}
+  .mk-stats div{flex:1;height:44px;background:var(--surface);border-radius:8px;display:grid;place-items:center}
+  .mk-stats div i{width:24px;height:24px;border-radius:50%;border:5px solid var(--line)}
+  .mk-cols{display:flex;gap:8px;flex:1}
+  .mk-feed{flex:1.6;background:var(--surface);border-radius:8px;padding:7px;display:flex;flex-direction:column;gap:5px;position:relative}
+  .mk-feed div{height:24px;border-radius:6px;background:var(--line2);border-left:4px solid var(--alert)}
+  .mk-feed div:nth-child(2){border-left-color:var(--amber)} .mk-feed div:nth-child(n+3){border-left-color:var(--teal2)}
+  .mk-right{flex:1;background:var(--surface);border-radius:8px;position:relative;padding:7px}
+  .mk-right div{height:22px;border-radius:6px;background:var(--alert-bg);border:1px solid var(--alert);margin-bottom:5px}
+  .pin{position:absolute;width:24px;height:24px;border-radius:50%;background:var(--alert);color:#fff;font-weight:800;font-size:12.5px;
+    display:grid;place-items:center;box-shadow:0 0 0 3px #fff;font-family:var(--mono);z-index:2}
+  .gd-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+  .gd-li{display:flex;gap:11px;align-items:flex-start;font-size:13px;line-height:1.7}
+  .gd-li .pin{position:static;flex:0 0 auto;box-shadow:none}
+  .gd-li b{display:block;font-size:13.5px}
+
+  /* カードの見方 */
+  .cardx{display:flex;gap:26px;align-items:flex-start;margin-bottom:20px}
+  .cx-card{flex:0 0 400px;position:relative;margin-top:30px}
+  .cx-c{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .cx-c .bar{position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--alert)}
+  .cx-c .av{width:42px;height:42px;border-radius:50%;background:#F6D9D5;border:3px solid var(--alert);flex:0 0 auto;margin-left:4px}
+  .cx-c .m{flex:1;min-width:0}
+  .cx-c .r1{display:flex;gap:6px;align-items:center;font-size:13px}
+  .cx-c .r1 b{font-size:14px}
+  .cx-c .r1 .cl{font-size:11px;color:var(--ink3)}
+  .cx-c .tg{font-size:10.5px;font-weight:800;border-radius:5px;padding:1px 7px;background:var(--alert-bg);color:var(--alert)}
+  .cx-c .tx{font-size:12px;color:var(--ink2);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cx-c .wv{display:flex;gap:2px;align-items:center;height:16px;margin-top:6px}
+  .cx-c .wv i{width:3px;background:#0000ff;border-radius:2px}
+  .cx-c .un{font-size:11px;font-weight:800;color:var(--alert);border:1.5px solid var(--alert);border-radius:7px;padding:3px 8px;flex:0 0 auto}
+  .cx-card .pin{box-shadow:0 0 0 3px #fff}
+  .cx-exp{flex:1;display:flex;flex-direction:column;gap:11px}
+  .colors{display:flex;gap:10px;margin:4px 0 20px}
+  .colors div{flex:1;border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.6;border-left:6px solid}
+  .colors b{display:block;font-size:14px}
+  .steps2{display:flex;gap:0;align-items:stretch}
+  .steps2 .fstep{background:var(--line2);border-color:var(--line2)}
+
+  /* メニュー */
+  .menu-g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .mn{display:flex;gap:13px;border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+  .mn .ic{width:42px;height:42px;border-radius:11px;background:#E8EDFB;display:grid;place-items:center;flex:0 0 auto}
+  .mn .ic svg{width:21px;height:21px;stroke:var(--teal);fill:none;stroke-width:1.7}
+  .mn b{display:block;font-size:14.5px;margin-bottom:3px}
+  .mn p{font-size:12.5px;color:var(--ink2);line-height:1.7}
+  .mn .who{display:inline-block;margin-top:6px;font-size:11px;color:var(--ink3);background:var(--line2);border-radius:6px;padding:2px 8px}
+  html.law-y .nav.active, html.law-y .mn .ic, html.law-y .mk-side i.a{background:#e8f5e9}
+
 </style>
 <style>
 /* ★ 社会福祉法人雄雅会（園コード Y〜）から開いたときは緑テーマ（2026-09）。
@@ -264,6 +377,7 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="brand"><b>伝達くん</b><span>事務所モニター</span></div>
   <div class="garden">しおどめ保育園○○</div>
   <div class="grow"></div>
+  <button class="guide-btn" id="guideBtn" title="伝達くんの使い方を図で見る"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"/><path d="M4 21V5M9 8h6M9 12h6"/></svg>説明書</button>
   <button class="listen-btn" id="listenBtn"><span class="mic"></span>受付マイクを試聴</button>
   <div class="live"><span class="dot"></span>LIVE</div>
   <div class="clock" id="clock">--:--</div>
@@ -287,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <button class="nav" data-view="archive">
       <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/></svg>
       録音アーカイブ</button>
-    <div class="side-foot">操作プロトタイプ<br>園児名は名簿／体調・アレルギー・メッセージ内容はサンプルです</div>
+    <div class="side-foot">操作プロトタイプ<br>園児名・体調・アレルギー・メッセージ内容はすべてダミーです</div>
   </nav>
 
   <main class="main" id="view"></main>
@@ -298,6 +412,155 @@ document.addEventListener('DOMContentLoaded', function(){
 <input type="file" id="audioFile" accept="audio/*" style="display:none">
 <div class="toast" id="toast"><span class="d"></span><span id="toastMsg"></span></div>
 <div class="demo-note">これは操作イメージの試作です</div>
+<!-- ===== 説明書（図解） ===== -->
+<div class="gd-scrim" id="gdScrim"></div>
+<section class="gd" id="guide" role="dialog" aria-label="伝達くん 説明書">
+  <div class="gd-h"><h2>伝達くん 説明書</h2><span class="s">図で見る使い方</span>
+    <button class="gd-x" id="gdClose" aria-label="閉じる">×</button></div>
+  <div class="gd-tabs" id="gdTabs">
+    <button class="gd-tab on" data-p="0"><span class="n">1</span>全体の流れ</button>
+    <button class="gd-tab" data-p="1"><span class="n">2</span>画面の見方</button>
+    <button class="gd-tab" data-p="2"><span class="n">3</span>カードの見方</button>
+    <button class="gd-tab" data-p="3"><span class="n">4</span>メニュー</button>
+  </div>
+  <div class="gd-body">
+
+    <!-- 1 全体の流れ -->
+    <div class="gd-pane on">
+      <p class="gd-lead">伝達くんは、送迎のときに保護者から聞いた<b>「お願い」「体調のこと」「気になる一言」</b>を記録し、
+        <b>園長や担当の職員へ確実に申し送る</b>ための仕組みです。口頭で聞いた話が忘れられたり、必要な人に届かなかったりするのを防ぎます。</p>
+      <div class="flow">
+        <div class="fstep"><span class="no">1</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="3"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5"/><path d="M15 8h6M15 12h4"/></svg></div>
+          <div class="t">保護者と話す</div><div class="d">受付・送迎のとき、職員はピンマイクを付けていつも通り会話</div>
+          <span class="st ok">できている</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><span class="no">2</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/></svg></div>
+          <div class="t">録音・文字起こし</div><div class="d">会話を録音し、自動で文字にする</div>
+          <span class="st ok">できている</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><span class="no">3</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+          <div class="t">事務所モニターに表示</div><div class="d">この画面にカードで並ぶ。録音の再生もできる</div>
+          <span class="st proto">試作中</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep todo"><span class="no">4</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2-6z"/></svg></div>
+          <div class="t">必要な人へ申し送り</div><div class="d">園長・担任・給食・看護などへ届ける</div>
+          <span class="st todo">アイデア募集中</span></div>
+        <div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><span class="no">5</span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
+          <div class="t">確認済みにする</div><div class="d">読んだ人が押して完了。漏れがひと目でわかる</div>
+          <span class="st proto">試作中</span></div>
+      </div>
+      <div class="gd-legend">
+        <span><span class="st ok">できている</span>使える状態</span>
+        <span><span class="st proto">試作中</span>この画面で操作のイメージを確認できる</span>
+        <span><span class="st todo">アイデア募集中</span>やり方がまだ決まっていない</span>
+      </div>
+      <div class="gd-box amb"><b>④「申し送り」のやり方を、皆さんと一緒に決めたいと考えています。</b>
+        <ul><li>誰に届けるか（内容によって届け先を変えるか）</li>
+          <li>どうやって届けるか（モニター、スマホ通知、朝礼・昼礼、紙など）</li>
+          <li>いつ届けるか（すぐ／その日の終わり／翌朝）</li>
+          <li>「確認しました」をどう残すか</li></ul></div>
+    </div>
+
+    <!-- 2 画面の見方 -->
+    <div class="gd-pane">
+      <p class="gd-lead">事務所のPCで開いたままにしておく画面です。番号の場所を見てください。</p>
+      <div class="mock">
+        <div class="mk-top">伝達くん <span class="pill">しおどめ保育園○○</span><span class="g"></span>
+          <span class="pill">説明書</span><span class="pill">受付マイクを試聴</span><span style="font-family:var(--mono);font-weight:600">8:41</span>
+          <span class="pin" style="right:40%;top:5px">1</span></div>
+        <div class="mk-row">
+          <div class="mk-side"><i class="a"></i><i></i><i></i><i></i><i style="margin-top:8px"></i>
+            <span class="pin" style="left:48px;top:150px">2</span></div>
+          <div class="mk-main">
+            <div class="mk-stats"><div><i style="border-top-color:#2F9FD6;border-right-color:#2F9FD6"></i></div><div><i style="border-top-color:#F2B01E"></i></div><div><i style="border-top-color:#EC2A8E"></i></div><div><i style="border-top-color:#26B0A0;border-right-color:#26B0A0"></i></div>
+              <span class="pin" style="left:-10px;top:-8px">3</span></div>
+            <div class="mk-cols">
+              <div class="mk-feed"><div></div><div></div><div></div><div></div><div></div>
+                <span class="pin" style="left:-10px;top:-8px">4</span></div>
+              <div class="mk-right"><div></div><div></div>
+                <span class="pin" style="right:-8px;top:-8px">5</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gd-list">
+        <div class="gd-li"><span class="pin">1</span><div><b>上のバー</b>園名・「説明書」ボタン・受付マイクの試聴・現在時刻が並びます。</div></div>
+        <div class="gd-li"><span class="pin">2</span><div><b>左のメニュー</b>見たい画面に切り替えます。赤い数字は「まだ確認していない件数」です。</div></div>
+        <div class="gd-li"><span class="pin">3</span><div><b>今日の数字</b>出席・要注意児・アレルギー対応・未確認メッセージの数を円グラフで表示します。</div></div>
+        <div class="gd-li"><span class="pin">4</span><div><b>保護者メッセージ</b>受付で話した内容が、新しい順にカードで届きます。</div></div>
+        <div class="gd-li"><span class="pin">5</span><div><b>今朝の要対応</b>アレルギーの除去食など、今日必ず確認することが出ます。</div></div>
+      </div>
+    </div>
+
+    <!-- 3 カードの見方 -->
+    <div class="gd-pane">
+      <p class="gd-lead">保護者との会話は、1件ずつ「カード」になって届きます。</p>
+      <div class="cardx">
+        <div class="cx-card">
+          <div class="cx-c"><span class="bar"></span><span class="av"></span>
+            <div class="m"><div class="r1"><b>青木さくら</b><span class="cl">うさぎ組</span><span class="tg">体調</span></div>
+              <div class="tx">昨夜、寝る前に37.8度の熱が出て、朝は下がったけれど…</div>
+              <div class="wv"><i style="height:5px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:16px"></i><i style="height:7px"></i><i style="height:11px"></i><i style="height:6px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:5px"></i><i style="height:10px"></i><i style="height:14px"></i><i style="height:7px"></i><i style="height:4px"></i><i style="height:9px"></i><i style="height:12px"></i></div></div>
+            <span class="un">未確認</span></div>
+          <span class="pin" style="left:-6px;top:-12px">A</span>
+          <span class="pin" style="left:110px;top:-12px">B</span>
+          <span class="pin" style="left:200px;top:58px">C</span>
+          <span class="pin" style="right:-6px;top:-12px">D</span>
+        </div>
+        <div class="cx-exp">
+          <div class="gd-li"><span class="pin">A</span><div><b>左の色の帯</b>どのくらい急ぐかを色で表します（下の表）。</div></div>
+          <div class="gd-li"><span class="pin">B</span><div><b>名前・クラス・分類</b>体調／怪我／食事／睡眠／その他に分かれます。</div></div>
+          <div class="gd-li"><span class="pin">C</span><div><b>文字起こしと録音</b>会話の要点と、録音の波形です。▶で再生できます。</div></div>
+          <div class="gd-li"><span class="pin">D</span><div><b>「未確認」ボタン</b>読んだら押すと「確認済み」に変わります。</div></div>
+        </div>
+      </div>
+      <div class="colors">
+        <div style="background:var(--alert-bg);border-color:var(--alert)"><b style="color:var(--alert)">赤</b>すぐに確認が必要（発熱・頭を打った など）</div>
+        <div style="background:var(--amber-bg);border-color:var(--amber)"><b style="color:var(--amber)">黄</b>注意して様子を見る（すり傷・咳 など）</div>
+        <div style="background:var(--teal-bg);border-color:var(--teal2)"><b style="color:var(--teal2)">緑</b>通常の連絡（忘れ物・寝不足 など）</div>
+      </div>
+      <p class="gd-lead" style="margin-bottom:10px"><b>カードを押すと、詳しい画面が右から開きます。</b></p>
+      <div class="steps2">
+        <div class="fstep"><div class="t">① カードを押す</div><div class="d">一覧から気になるカードを選ぶ</div></div><div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><div class="t">② 全文を読む・聞く</div><div class="d">文字起こしの全文と録音の再生。受付担当・時刻も表示</div></div><div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><div class="t">③ 担任に共有</div><div class="d">必要なら担任へ回す（試作のボタン）</div></div><div class="farrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="fstep"><div class="t">④ 確認済みにする</div><div class="d">対応したら押して完了</div></div>
+      </div>
+    </div>
+
+    <!-- 4 メニュー -->
+    <div class="gd-pane">
+      <p class="gd-lead">左のメニューから、5つの画面に切り替えられます。</p>
+      <div class="menu-g">
+        <div class="mn"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div>
+          <div><b>伝達くん（トップ）</b><p>今日の数字・届いたメッセージ・今朝の要対応を1画面にまとめたもの。まずここを見ます。</p><span class="who">全員</span></div></div>
+        <div class="mn"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h10"/></svg></div>
+          <div><b>保護者メッセージボード</b><p>保護者との会話をすべて一覧で。クラスや分類で絞り込み、未確認のものを片付けます。</p><span class="who">担任・園長</span></div></div>
+        <div class="mn"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M8 3v6a2 2 0 004 0M16 3c-1.5 0-2 2-2 4s.5 4 2 4v10"/></svg></div>
+          <div><b>アレルギー・給食</b><p>今日の献立とアレルギー児の照らし合わせ。除去食の準備をダブルチェックします。</p><span class="who">給食・担任</span></div></div>
+        <div class="mn"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15 20c0-2 1-3.5 2.5-4"/></svg></div>
+          <div><b>要注意児</b><p>アレルギーや既往歴など、日ごろから気をつけたい子の一覧です。</p><span class="who">全員</span></div></div>
+        <div class="mn"><div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/></svg></div>
+          <div><b>録音アーカイブ</b><p>過去の録音を日付順に保管。「あのとき何と言われたか」を後から聞き直せます。</p><span class="who">園長</span></div></div>
+        <div class="mn" style="background:var(--line2);border-style:dashed"><div class="ic" style="background:#fff"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg></div>
+          <div><b>この画面は試作です</b><p>名前・体調・メッセージの内容はすべてダミーです。実際の園児の情報は入っていません。</p></div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="gd-foot">
+    <button class="btn" id="gdPrev">← 前へ</button><span class="sp"></span>
+    <span id="gdPage" style="font-size:12px;color:var(--ink3);font-family:var(--mono)">1 / 4</span><span class="sp"></span>
+    <button class="btn primary" id="gdNext">次へ →</button>
+  </div>
+</section>
+
 
 <script>
 // ============ データ ============
@@ -754,6 +1017,27 @@ $("#audioFile").onchange = (e)=>{
 function tick(){ const n=new Date(); $("#clock").textContent=`${n.getHours()}:${String(n.getMinutes()).padStart(2,'0')}`; }
 tick(); setInterval(tick,10000);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDrawer(); });
+// ============ 説明書（図解） ============
+let gdPage = 0;
+function gdShow(i){
+  const panes=[...document.querySelectorAll(".gd-pane")], tabs=[...document.querySelectorAll(".gd-tab")];
+  gdPage = Math.max(0, Math.min(panes.length-1, i));
+  panes.forEach((p,k)=>p.classList.toggle("on", k===gdPage));
+  tabs.forEach((t,k)=>t.classList.toggle("on", k===gdPage));
+  $("#gdPage").textContent = (gdPage+1)+" / "+panes.length;
+  $("#gdPrev").style.visibility = gdPage===0 ? "hidden" : "visible";
+  $("#gdNext").textContent = gdPage===panes.length-1 ? "閉じる" : "次へ →";
+  document.querySelector(".gd-body").scrollTop = 0;
+}
+function openGuide(){ gdShow(0); $("#guide").classList.add("open"); $("#gdScrim").classList.add("open"); }
+function closeGuide(){ $("#guide").classList.remove("open"); $("#gdScrim").classList.remove("open"); }
+$("#guideBtn").onclick = openGuide;
+$("#gdClose").onclick = closeGuide;
+$("#gdScrim").onclick = closeGuide;
+$("#gdTabs").onclick = e=>{ const t=e.target.closest(".gd-tab"); if(t) gdShow(+t.dataset.p); };
+$("#gdPrev").onclick = ()=>gdShow(gdPage-1);
+$("#gdNext").onclick = ()=>{ if(gdPage===3) closeGuide(); else gdShow(gdPage+1); };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeGuide(); });
 render();
 </script>
 </body>
