@@ -292,6 +292,10 @@
   body.uc .in-go{display:none}
   body.uc .in-foot{justify-content:center}
   body.uc .in-foot .sp{display:none}
+  .in-back{display:none;align-items:center;gap:6px;flex:0 0 auto;height:50px;padding:0 20px;border-radius:14px;border:1px solid #C9D5F5;background:#fff;color:var(--teal);font-size:17px;font-weight:900;font-family:inherit;cursor:pointer}
+  .in-back:hover{background:#F2F5FD}
+  .in-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  body.uc .in-back{display:inline-flex}
 
   .in-pic{position:relative;aspect-ratio:200/130;background:#EAF0FC;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:4px;padding:0 6px}
   .in-pic img{display:block;height:74%;width:auto}
@@ -391,6 +395,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <p class="in-lead">登降園の忙しい時間に受けた<b>保護者からの申し送り</b>を、胸につけたピンマイクで録音して文字にし、<b>伝えるべき職員・園長へ確実に届ける</b>しくみです。</p>
     </div>
     <button class="in-x" id="inClose" aria-label="閉じる">×</button>
+    <button class="in-back" id="inBack" type="button"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>戻る</button>
   </div>
 
   <div class="in-flow">
@@ -953,6 +958,12 @@ function closeIntro(){
   try{ if($("#inNoShow").checked) localStorage.setItem(INTRO_KEY,"1"); else localStorage.removeItem(INTRO_KEY); }catch(e){}
   $("#intro").classList.remove("open"); $("#inScrim").classList.remove("open");
 }
+// 作成中画面の「戻る」：前の画面に戻る。新しいタブで開いた場合はタブを閉じ、閉じられないときはしおどめポータルを開く
+$("#inBack").onclick = ()=>{
+  if(history.length > 1){ history.back(); return; }
+  try{ window.close(); }catch(e){}
+  setTimeout(()=>{ location.href = "https://kimkat01.github.io/shiodome-knowledge/"; }, 300);
+};
 $("#guideBtn").onclick = openIntro;
 $("#inClose").onclick = closeIntro;
 $("#inGo").onclick = closeIntro;
