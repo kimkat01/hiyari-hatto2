@@ -283,6 +283,15 @@
   .in-foot .sp{flex:1}
   .in-go{min-width:190px;height:50px;border-radius:14px;border:none;background:var(--teal);color:#fff;font-size:17px;font-weight:900;font-family:inherit}
   .in-go:hover{filter:brightness(1.08)}
+  /* ===== 作成中（クローズ）表示 ===== */
+  body.uc .in-scrim{background:#EEF1F8;opacity:1;pointer-events:auto}
+  body.uc .in-x, body.uc #inNoShow, body.uc label[for="inNoShow"]{display:none}
+  .in-wip{display:none;align-items:center;gap:10px;min-height:50px;padding:0 20px;border-radius:14px;background:#FFF4D6;color:#8A5F10;font-size:17px;font-weight:900;cursor:default}
+  .in-wip svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+  body.uc .in-wip{display:flex}
+  body.uc .in-go{display:none}
+  body.uc .in-foot{justify-content:center}
+  body.uc .in-foot .sp{display:none}
 
   .in-pic{position:relative;aspect-ratio:200/130;background:#EAF0FC;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;gap:4px;padding:0 6px}
   .in-pic img{display:block;height:74%;width:auto}
@@ -356,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function(){
       アレルギー・給食</button>
     <button class="nav" data-view="attention">
       <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2.5-5 5-5s5 2 5 5"/><circle cx="17" cy="9" r="2.3"/><path d="M15 20c0-2 1-3.5 2.5-4"/></svg>
-      要注意児</button>
+      共有事項あり</button>
     <div class="side-sep"></div>
     <button class="nav" data-view="archive">
       <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/></svg>
@@ -468,6 +477,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <label for="inNoShow">次から表示しない</label>
     <span class="sp"></span>
     <button class="in-go" id="inGo">わかった、使ってみる</button>
+    <div class="in-wip" role="status"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>ただいま作成中です（公開までお待ちください）</div>
   </div>
 </section>
 
@@ -695,7 +705,7 @@ function viewDashboard(){
     ${statDonut(present/17, "#2F9FD6", present, "/ 17名", "本日の出席",
       `<div class="legend2"><span><i style="background:#2F9FD6"></i>出席 ${present}</span><span><i style="background:var(--line)"></i>欠席 ${absent}</span></div>`,
       {bigColor:"var(--ink)"})}
-    ${statDonut(att/present, "#F2B01E", att, "名", "要注意児",
+    ${statDonut(att/present, "#F2B01E", att, "名", "共有事項あり",
       `<div class="sub">${present}名中</div>`, {bigColor:"var(--ink)"})}
     ${statDonut(allergy/present, "#EC2A8E", allergy, "件", "アレルギー対応",
       `<div class="sub">${present}名中</div>`, {bigColor:"var(--ink)"})}
@@ -718,7 +728,7 @@ function viewDashboard(){
         <div class="prog"><span>ダブルチェック</span><div class="bar"><i style="width:66%"></i></div><span style="font-family:var(--mono)">2/3</span></div>
       </div>
       <div class="panel">
-        <div class="panel-h"><h2>要注意児（本日の出席）</h2><span class="cnt">6名</span></div>
+        <div class="panel-h"><h2>共有事項あり（本日の出席）</h2><span class="cnt">6名</span></div>
         <div class="list">
           ${attentionChildren.slice(0,4).map(c=>`<div class="li">${avatar(c.sex, c.lv, 38)}
             <div><div class="nm">${c.name}</div><div class="meta">${c.cls}</div></div>
@@ -770,8 +780,8 @@ function viewAllergy(){
 
 function viewAttention(){
   return `
-  <div class="page-h"><h1>要注意児</h1><span class="sub">本日の出席者から自動抽出</span></div>
-  <div class="updated">6名 ・ アレルギー児 3名 / 特性のある子 2名 / 既往あり 1名</div>
+  <div class="page-h"><h1>共有事項あり</h1><span class="sub">本日の出席者から自動抽出</span></div>
+  <div class="updated">6名 ・ アレルギー児 3名 / 個別配慮 2名 / 既往あり 1名</div>
   <div class="stats" style="grid-template-columns:repeat(3,1fr)">
     ${attentionChildren.map(c=>`<div class="stat" style="display:flex;gap:14px;align-items:center">
       ${avatar(c.sex, c.lv, 48)}
@@ -933,10 +943,13 @@ tick(); setInterval(tick,10000);
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDrawer(); });
 // ============ はじめに（図解ポップアップ） ============
 // 開いたときに自動で表示。「次から表示しない」にチェックして閉じると、このPCでは次から自動で出ない（上部「説明書」ボタンでいつでも再表示）
+// ★作成中フラグ：true の間は説明画面だけを表示し、本体画面には進めない（公開するときは false にする）
+const UNDER_CONSTRUCTION = true;
 const INTRO_KEY = "dentatsu_intro_hide";
 function introHidden(){ try{ return localStorage.getItem(INTRO_KEY)==="1"; }catch(e){ return false; } }
 function openIntro(){ $("#inNoShow").checked = introHidden(); $("#intro").classList.add("open"); $("#inScrim").classList.add("open"); }
 function closeIntro(){
+  if(UNDER_CONSTRUCTION) return; // 作成中は閉じられない
   try{ if($("#inNoShow").checked) localStorage.setItem(INTRO_KEY,"1"); else localStorage.removeItem(INTRO_KEY); }catch(e){}
   $("#intro").classList.remove("open"); $("#inScrim").classList.remove("open");
 }
@@ -945,7 +958,8 @@ $("#inClose").onclick = closeIntro;
 $("#inGo").onclick = closeIntro;
 $("#inScrim").onclick = closeIntro;
 document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#intro").classList.contains("open")) closeIntro(); });
-if(!introHidden()) setTimeout(openIntro, 400);
+if(UNDER_CONSTRUCTION){ document.body.classList.add("uc"); openIntro(); }
+else if(!introHidden()) setTimeout(openIntro, 400);
 render();
 </script>
 <!-- しおどめポータルサイトから開いたときだけ、左下に「ログアウト」（ポータルへ戻る）ボタンを出す -->
